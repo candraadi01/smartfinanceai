@@ -1,0 +1,4 @@
+import { Sparkles, Target, TrendingDown } from 'lucide-react';
+import { getTransactions, getUser } from '../services/storage';
+import { getRecommendations } from '../services/analytics';
+export default function Recommendations(){const recs=getRecommendations(getTransactions(),getUser());return <section className="page"><div className="page-title"><div><p>Personal money coach</p><h1>AI Recommendation</h1></div></div><div className="recommend-hero"><Sparkles size={42}/><h2>Insight otomatis untuk kebiasaan finansialmu</h2><p>Versi ini masih mock/rule-based, tapi struktur UI sudah siap dihubungkan ke model AI atau REST API.</p></div><div className="rec-grid">{recs.map((r,i)=><div className="panel rec-card" key={r.title}><div className="rec-icon">{i===0?<TrendingDown/>:<Target/>}</div><h2>{r.title}</h2><p>{r.text}</p><button className="btn ghost dark">Terapkan Saran</button></div>)}</div></section>}
